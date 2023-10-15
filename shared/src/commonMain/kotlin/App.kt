@@ -8,6 +8,11 @@ import dev.icerock.moko.mvvm.compose.viewModelFactory
 import ui.BirdsPage
 import viewmodel.BirdsViewModel
 
+/**
+ * Create project template from: https://github.com/JetBrains/compose-multiplatform-ios-android-template/#readme
+ *
+ * */
+
 @Composable
 fun BirdAppTheme(
     content: @Composable () -> Unit
