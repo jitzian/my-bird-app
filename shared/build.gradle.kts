@@ -33,6 +33,11 @@ kotlin {
                 implementation("io.ktor:ktor-serialization-kotlinx-json:2.3.5")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.6.0")
 
+                //Moko MVVM
+                //https://github.com/icerockdev/moko-mvvm
+                api("dev.icerock.moko:mvvm-core:0.16.1") // only ViewModel, EventsDispatcher, Dispatchers.UI
+                api("dev.icerock.moko:mvvm-compose:0.16.1") // api mvvm-core, getViewModel for Compose Multiplatfrom
+
             }
         }
         val androidMain by getting {
