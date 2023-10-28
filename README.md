@@ -282,3 +282,31 @@ We encourage you to explore Compose Multiplatform further and try out more proje
 * [Create an application targeting Windows, macOS, and Linux with Compose Multiplatform for Desktop](https://github.com/JetBrains/compose-multiplatform-desktop-template#readme)
 * [Complete more Compose Multiplatform tutorials](https://github.com/JetBrains/compose-multiplatform/blob/master/tutorials/README.md)
 * [Explore some more advanced Compose Multiplatform example projects](https://github.com/JetBrains/compose-multiplatform/blob/master/examples/README.md)
+
+
+
+<table>
+  <tr>
+    <!-- First Row -->
+    <td>
+      Android App
+    </td>
+    <td>
+      iOS App
+    </td>
+  </tr>
+  <tr>
+    <!-- Second Row -->
+    <td>
+      <img src="https://github.com/jitzian/my-bird-app/assets/7937304/f798d5c0-62d1-478b-843a-e3600725edd1" alt="Android">
+    </td>
+    <td>
+      <img src="https://github.com/jitzian/my-bird-app/assets/7937304/9be9c162-6061-4425-8df3-e1bdb3f3a9d1" alt="iPhone">
+    </td>
+  </tr>
+</table>
+
+
+
+
+
