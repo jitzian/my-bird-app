@@ -1,11 +1,6 @@
 package viewmodel
 
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
-import io.ktor.client.HttpClient
-import io.ktor.client.call.body
-import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
-import io.ktor.client.request.get
-import io.ktor.serialization.kotlinx.json.json
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
@@ -28,20 +23,11 @@ class BirdsViewModel : ViewModel() {
 
     private val repository: BirdsRepository = BirdsRepositoryImpl()
 
-    /*private val httpClient: HttpClient = HttpClient {
-        install(ContentNegotiation) {
-            json()
-        }
-    }*/
-
     init {
         updateImages()
     }
 
-    override fun onCleared() {
-        //httpClient.close()
-        repository.closeConnection()
-    }
+    override fun onCleared() = repository.closeConnection()
 
     fun selectCategory(category: String) {
         _state.update { it.copy(selectedCategory = category) }
@@ -53,13 +39,6 @@ class BirdsViewModel : ViewModel() {
         }
     }
 
-    /*private suspend fun getImages(): List<BirdImage> {
-        return httpClient
-            .get("https://sebi.io/demo-image-api/pictures.json")
-            .body()
-    }*/
-
     private suspend fun getImages() = repository.getImages()
-
 
 }
