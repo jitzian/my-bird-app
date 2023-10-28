@@ -11,6 +11,8 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import model.BirdImage
+import repository.BirdsRepository
+import repository.BirdsRepositoryImpl
 
 data class BirdsUIState(
     val images: List<BirdImage> = emptyList(),
@@ -24,18 +26,21 @@ class BirdsViewModel : ViewModel() {
     private val _state = MutableStateFlow(BirdsUIState())
     val state = _state.asStateFlow()
 
-    private val httpClient: HttpClient = HttpClient {
+    private val repository: BirdsRepository = BirdsRepositoryImpl()
+
+    /*private val httpClient: HttpClient = HttpClient {
         install(ContentNegotiation) {
             json()
         }
-    }
+    }*/
 
     init {
         updateImages()
     }
 
     override fun onCleared() {
-        httpClient.close()
+        //httpClient.close()
+        repository.closeConnection()
     }
 
     fun selectCategory(category: String) {
@@ -48,11 +53,13 @@ class BirdsViewModel : ViewModel() {
         }
     }
 
-    private suspend fun getImages(): List<BirdImage> {
+    /*private suspend fun getImages(): List<BirdImage> {
         return httpClient
             .get("https://sebi.io/demo-image-api/pictures.json")
             .body()
-    }
+    }*/
+
+    private suspend fun getImages() = repository.getImages()
 
 
 }
