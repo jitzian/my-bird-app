@@ -46,6 +46,7 @@ kotlin {
                 api("androidx.appcompat:appcompat:1.6.1")
                 api("androidx.core:core-ktx:1.10.1")
                 implementation("io.ktor:ktor-client-android:2.3.1")
+                implementation("androidx.compose.ui:ui-tooling-preview-android:1.5.4")
             }
         }
         val iosX64Main by getting
@@ -83,3 +84,6 @@ android {
         jvmToolchain(17)
     }
 }
+//dependencies {
+//    implementation("androidx.compose.ui:ui-tooling-preview-android:1.5.4")
+//}

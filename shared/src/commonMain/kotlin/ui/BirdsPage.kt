@@ -24,11 +24,30 @@ import androidx.compose.ui.unit.dp
 import io.kamel.image.KamelImage
 import io.kamel.image.asyncPainterResource
 import model.BirdImage
+import viewmodel.BirdsUIState
 import viewmodel.BirdsViewModel
 
 @Composable
-fun BirdsPage(viewModel: BirdsViewModel) {
+fun BirdsPageState(viewModel: BirdsViewModel) {
     val state by viewModel.state.collectAsState()
+
+    if (state.isLoading) {
+        LoadingScreen()
+    }
+
+    BirdsPage(
+        data = state,
+        //selectCategory = { viewModel.selectCategory(it) }
+        selectCategory = viewModel::selectCategory
+    )
+
+}
+
+@Composable
+fun BirdsPage(
+    data: BirdsUIState,
+    selectCategory: (String) -> Unit
+) {
     Column(
         modifier = Modifier
             .fillMaxSize(),
@@ -42,9 +61,9 @@ fun BirdsPage(viewModel: BirdsViewModel) {
                 .padding(6.dp),
             horizontalArrangement = Arrangement.spacedBy(6.dp)
         ) {
-            for (category in state.categories) {
+            for (category in data.categories) {
                 Button(
-                    onClick = { viewModel.selectCategory(category) },
+                    onClick = { selectCategory(category) },
                     modifier = Modifier
                         .aspectRatio(1f)
                         .fillMaxSize()
@@ -59,22 +78,20 @@ fun BirdsPage(viewModel: BirdsViewModel) {
             }
         }
 
-
-        AnimatedVisibility(state.selectedImages.isNotEmpty()) {
+        AnimatedVisibility(data.selectedImages.isNotEmpty()) {
             LazyVerticalGrid(
                 columns = GridCells.Fixed(2),
                 horizontalArrangement = Arrangement.spacedBy(4.dp),
                 verticalArrangement = Arrangement.spacedBy(4.dp),
                 modifier = Modifier.fillMaxSize().padding(horizontal = 6.dp),
                 content = {
-                    items(state.selectedImages) { image ->
+                    items(data.selectedImages) { image ->
                         BirdImageCell(image = image)
                     }
                 }
             )
         }
     }
-
 }
 
 @Composable

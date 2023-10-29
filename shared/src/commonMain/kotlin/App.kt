@@ -5,7 +5,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import dev.icerock.moko.mvvm.compose.getViewModel
 import dev.icerock.moko.mvvm.compose.viewModelFactory
-import ui.BirdsPage
+import ui.BirdsPageState
 import viewmodel.BirdsViewModel
 
 /**
@@ -32,7 +32,7 @@ fun BirdAppTheme(
 fun App() {
     BirdAppTheme {
         val birdsViewModel = getViewModel(Unit, viewModelFactory { BirdsViewModel() })
-        BirdsPage(birdsViewModel)
+        BirdsPageState(birdsViewModel)
     }
 }
 
